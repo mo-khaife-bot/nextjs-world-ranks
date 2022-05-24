@@ -14,12 +14,28 @@
   padding: 20px;
   color: var(--text-color-secondary);
   font-weight: 500;
+
+  /* make it flex container to center KeyboardArrowRounded Material icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* altering justify-content for the heading name so more in line */
 .heading_name {
-  text-align: left;
+  justify-content: flex-start;
 }
 
+/* center KeyboardArrow Icon*/
+.heading_arrow {
+  color: var(--primary-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 2px;
+}
 .row {
   display: flex;
   padding: 20px;
