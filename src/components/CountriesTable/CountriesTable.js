@@ -4,6 +4,8 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import styles from "./CountriesTable.module.css";
+import Link from "next/link";
+import Image from "next/image";
 
 // func to order population depending on direction
 const orderBy = (countries, value, direction) => {
@@ -85,13 +87,15 @@ const CountriesTable = ({ countries }) => {
       </div>
 
       {/* feed in the orderedCountries version of countries */}
-      {orderedCountries.map((country, idx) => (
-        <div key={idx} className={styles.row}>
-          {/* API requires country.name.common */}
-          <div className={styles.name}>{country.name}</div>
+      {orderedCountries?.map((country) => (
+        <Link key={country.alpha3Code} href={`/country/${country.alpha3Code}`}>
+          <div className={styles.row}>
+            {/* API requires country.name.common */}
+            <div className={styles.name}>{country.name}</div>
 
-          <div className={styles.population}>{country.population}</div>
-        </div>
+            <div className={styles.population}>{country.population}</div>
+          </div>
+        </Link>
       ))}
     </div>
   );
