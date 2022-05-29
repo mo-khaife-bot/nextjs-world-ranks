@@ -5,6 +5,7 @@ import {
 import { useState } from "react";
 import styles from "./CountriesTable.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 // func to order population depending on direction
 const orderBy = (countries, value, direction) => {

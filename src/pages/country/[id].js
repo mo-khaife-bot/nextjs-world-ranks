@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import styles from "./Country.module.css";
 // import { dict_country_alpha3 } from "./Constant";
 import { useState, useEffect } from "react";
+// import Image from "next/image";
 
 // async func to ake in country info from id to show flags for neighbouring countries/borders
 const getCountry = async (id) => {
@@ -28,7 +29,7 @@ const Country = ({ country }) => {
   // use useEffect so we get boarders as soon as page loads
   useEffect(() => {
     getBorders();
-  }, []);
+  }, [borders]);
 
   console.log("BORDERS :::", borders);
 
@@ -36,7 +37,7 @@ const Country = ({ country }) => {
     <Layout title={country.name}>
       <div>
         <div className={styles.overviewPanel}>
-          <img alt={country.name} src={country.flags.png}></img>
+          <img alt={country.name} src={country.flags.png} />
 
           <h1 className={styles.overview_name}>{country.name}</h1>
           <div className={styles.overview_region}>{country.region}</div>
