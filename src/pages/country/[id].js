@@ -1,6 +1,6 @@
 import Layout from "../../components/Layout/Layout";
 
-import styles from "./Country.module.css";
+import styles from "./CountryPage.module.css";
 // import { dict_country_alpha3 } from "./Constant";
 import { useState, useEffect } from "react";
 // import Image from "next/image";
@@ -181,10 +181,6 @@ export default Country;
 
 export const getServerSideProps = async ({ params }) => {
   const country = await getCountry(params.id);
-
-  // const res = await fetch(`https://restcountries.com/v2/alpha/${params.id}`);
-
-  // const country = await res.json();
 
   return {
     props: {
