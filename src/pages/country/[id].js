@@ -1,6 +1,6 @@
 import Layout from "../../components/Layout/Layout";
 
-import styles from "./Country.module.css";
+import styles from "./country.module.css";
 // import { dict_country_alpha3 } from "./Constant";
 import { useState, useEffect } from "react";
 // import Image from "next/image";
