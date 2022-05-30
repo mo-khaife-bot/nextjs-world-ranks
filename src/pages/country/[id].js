@@ -1,6 +1,7 @@
 import Layout from "../../components/Layout/Layout";
+import Link from "next/link";
 
-import styles from "./Country.module.css";
+import styles from "./country.module.css";
 // import { dict_country_alpha3 } from "./Constant";
 import { useState, useEffect } from "react";
 // import Image from "next/image";
@@ -21,7 +22,10 @@ const Country = ({ country }) => {
   const getBorders = async () => {
     const borders = await Promise.all(
       country.borders?.map((border) => getCountry(border))
-    );
+    )
+      .then((x) => console.log("Docs updated"))
+      // catch statement important for error handling along with ternary operator where border is used
+      .catch((err) => console.error(err));
 
     setBorders(borders);
   };
@@ -134,17 +138,26 @@ const Country = ({ country }) => {
                 Neighbouring Countries
               </div>
               <div className={styles.details_panel_borders_container}>
-                {borders?.map((place) => (
-                  <div
-                    key={place.name}
-                    className={styles.details_panel_borders_country}
-                  >
-                    <img src={place.flag} alt={place.name} />
-                    <div className={styles.details_panel_borders_name}>
-                      {place.name}
-                    </div>
-                  </div>
-                ))}
+                {/* ternary operator to handle if no borders */}
+                {borders ? (
+                  <>
+                    {borders?.map((place) => (
+                      <Link
+                        key={place.name}
+                        href={`/country/${place.alpha3Code}`}
+                      >
+                        <div className={styles.details_panel_borders_country}>
+                          <img src={place.flag} alt={place.name} />
+                          <div className={styles.details_panel_borders_name}>
+                            {place.name}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </>
+                ) : (
+                  "Doesn't Border Any Country"
+                )}
               </div>
             </div>
 
@@ -181,10 +194,6 @@ export default Country;
 
 export const getServerSideProps = async ({ params }) => {
   const country = await getCountry(params.id);
-
-  // const res = await fetch(`https://restcountries.com/v2/alpha/${params.id}`);
-
-  // const country = await res.json();
 
   return {
     props: {
