@@ -74,6 +74,11 @@
   text-align: center;
 }
 
+/* highlight the flag */
+.details_panel_borders_country:hover {
+  opacity: 0.5;
+}
+
 .details_panel_borders_label {
   color: var(--text-color-secondary);
   margin-bottom: 20px;
