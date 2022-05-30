@@ -1,8 +1,36 @@
+import { Brightness6Rounded } from "@mui/icons-material";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "./Layout.module.css";
+import { useState, useEffect } from "react";
 
 const Layout = ({ children, title = "World Ranks" }) => {
+  const [theme, setTheme] = useState("dark");
+
+  // sets the data theme from the last value when page refreshed
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      localStorage.getItem("theme")
+    );
+    setTheme(localStorage.getItem("theme"));
+  }, []);
+
+  const switchTheme = () => {
+    if (theme === "light") {
+      saveTheme("dark");
+    } else {
+      saveTheme("light");
+    }
+  };
+
+  // func to DRY purposes
+  const saveTheme = (theme) => {
+    setTheme(theme);
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -40,11 +68,20 @@ const Layout = ({ children, title = "World Ranks" }) => {
             <rect y="4" width="7.33333" height="4.4" rx="2" fill="#21B6B7" />
           </svg>
         </Link>
+
+        <button className={styles.themeSwitcher} onClick={switchTheme}>
+          <Brightness6Rounded />
+        </button>
       </header>
 
       <main className={styles.main}>{children}</main>
 
-      <footer className={styles.footer}>Mo Khaife Ali @ Khaife_codes</footer>
+      <footer className={styles.footer}>
+        {" "}
+        <a href="https://github.com/mo-khaife-bot">
+          Mo Khaife Ali @ Mo-khaife-bot
+        </a>
+      </footer>
     </div>
   );
 };
