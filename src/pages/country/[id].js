@@ -22,10 +22,7 @@ const Country = ({ country }) => {
   const getBorders = async () => {
     const borders = await Promise.all(
       country.borders?.map((border) => getCountry(border))
-    )
-      .then((x) => console.log("Docs updated"))
-      // catch statement important for error handling along with ternary operator where border is used
-      .catch((err) => console.error(err));
+    ).catch((error) => console.error(error));
 
     setBorders(borders);
   };
@@ -160,29 +157,6 @@ const Country = ({ country }) => {
                 )}
               </div>
             </div>
-
-            {/* Borders / Neighbouring Countries */}
-            {/* <div className={styles.details_panel_row}>
-            <div className={styles.details_panel_label}>
-              Neighbouring Countries
-            </div>
-
-            {country.borders ? (
-              <>
-                <div className={styles.details_panel_value}>
-                  {country.borders
-                    //   no destructuring here as name of elm being map has to be in key of obj to be destructured.
-                    .map((place) => dict_country_alpha3[place])
-                    .join(",  ")}
-                </div>
-              </>
-            ) : (
-              <>
-                {" "}
-                <div className={styles.details_panel_value}>No Neighbours</div>
-              </>
-            )}
-          </div> */}
           </div>
         </div>
       </div>
@@ -192,7 +166,21 @@ const Country = ({ country }) => {
 
 export default Country;
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticPaths = async () => {
+  const res = await fetch("https://restcountries.com/v2/all");
+  const countries = await res.json();
+
+  const paths = countries.map((country) => ({
+    params: { id: country.alpha3Code },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
   const country = await getCountry(params.id);
 
   return {
