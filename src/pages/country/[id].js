@@ -2,11 +2,9 @@ import Layout from "../../components/Layout/Layout";
 import Link from "next/link";
 
 import styles from "./country.module.css";
-// import { dict_country_alpha3 } from "./Constant";
 import { useState, useEffect } from "react";
-// import Image from "next/image";
 
-// async func to ake in country info from id to show flags for neighbouring countries/borders
+// async func to take in country info from id to show flags for neighboring countries/borders
 const getCountry = async (id) => {
   const res = await fetch(`https://restcountries.com/v2/alpha/${id}`);
 
@@ -15,17 +13,17 @@ const getCountry = async (id) => {
 };
 
 const Country = ({ country }) => {
-  console.log("COUNTRY :::", country);
   const [borders, setBorders] = useState([]);
 
-  // FIXME need to figure out how to use Promises.allSettled for situation where there is no border for that country
   const getBorders = async () => {
+    // edge casing for countries with no neighbors / borders will be undefined
     if (country.borders != undefined) {
       const borders = await Promise.all(
         country.borders?.map((border) => getCountry(border))
       ).catch((error) => console.error(error));
 
       setBorders(borders);
+      // if no neighbors and undefined make it null so doesn't effect next.js
     } else {
       setBorders((country.borders = null));
     }
@@ -35,8 +33,6 @@ const Country = ({ country }) => {
   useEffect(() => {
     getBorders();
   }, []);
-
-  console.log("BORDERS :::", borders);
 
   function numberWithCommas(x) {
     return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -64,6 +60,7 @@ const Country = ({ country }) => {
               </div>
               <div className={styles.overview_area}>
                 <div className={styles.overview_value}>
+                  {/* adds commas to Area & KM with superscript */}
                   {numberWithCommas(country.area)} km{" "}
                   <sup style={{ fontSize: "0.5rem" }}>2</sup>
                 </div>
@@ -82,6 +79,7 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Capital</div>
               <div className={styles.details_panel_value}>
+                {/* edge casing for places with no capital like ANTARCTICA */}
                 {country.capital ? country.capital : "Doesn't have a capital"}
               </div>
             </div>
@@ -90,14 +88,14 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Languages</div>
               <div className={styles.details_panel_value}>
-                {/* destructuring the map element so only get name allowes us to keep array of obj in 1 line */}
+                {/* destructuring the map element so only get name allows us to keep array of obj in 1 line */}
                 {country.languages
                   ? country.languages?.map(({ name }) => name).join(", ")
                   : "No Data about Languages"}
               </div>
             </div>
 
-            {/* Regional Block Orgs */}
+            {/* Regional Block Orgs + edge casing for places with no regional blocks */}
             {country.regionalBlocs ? (
               <>
                 <div className={styles.details_panel_row}>
@@ -105,7 +103,7 @@ const Country = ({ country }) => {
                     Regional Block
                   </div>
                   <div className={styles.details_panel_value}>
-                    {/* destructuring the map element so only get name allowes us to keep array of obj in 1 line */}
+                    {/* destructuring the map element so only get name allows us to keep array of obj in 1 line */}
                     {country.regionalBlocs.map(({ name }) => name).join(", ")}
                   </div>
                 </div>
@@ -116,6 +114,7 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Currencies</div>
               <div className={styles.details_panel_value}>
+                {/* edge casing for places with no capital like ANTARCTICA */}
                 {country.currencies
                   ? country.currencies
                       ?.map(({ name, symbol }) => `${name} ${symbol}`)
@@ -140,7 +139,9 @@ const Country = ({ country }) => {
                     Gini - measure of wealth inequality
                   </div>
                   <div className={styles.details_panel_value}>
-                    {`${country.gini} %`}
+                    {country.gini
+                      ? `{country.gini} %`
+                      : "No information about Gini Measure"}
                   </div>
                 </div>
               </>

@@ -5,11 +5,11 @@ import CountriesTable from "../components/CountriesTable/CountriesTable";
 import { useState } from "react";
 
 export default function Home({ countries }) {
-  console.log(countries);
+  // console.log(countries);
 
   const [keyword, setKeyword] = useState("");
 
-  // filter country by name or region
+  // filter country by name, region or subregion
   const filteredCountries = countries.filter(
     (country) =>
       country.name.toLowerCase().includes(keyword) ||
