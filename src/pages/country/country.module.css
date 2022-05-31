@@ -15,7 +15,8 @@
   font-size: 32px;
 }
 
-.overview_region {
+.overview_region,
+.overview_subregion {
   text-align: center;
   font-size: 20px;
 }
