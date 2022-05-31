@@ -61,7 +61,6 @@ const CountriesTable = ({ countries }) => {
   const setValueAndDirection = (value) => {
     switchDirection();
     setValue(value);
-    console.log("value :::", value);
   };
 
   return (
