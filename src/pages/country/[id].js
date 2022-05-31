@@ -52,6 +52,7 @@ const Country = ({ country }) => {
 
             <h1 className={styles.overview_name}>{country.name}</h1>
             <div className={styles.overview_region}>{country.region}</div>
+            <div className={styles.overview_subregion}>{country.subregion}</div>
 
             <div className={styles.overview_numbers}>
               <div className={styles.overview_population}>
@@ -62,7 +63,10 @@ const Country = ({ country }) => {
                 <div className={styles.overview_label}>Population</div>
               </div>
               <div className={styles.overview_area}>
-                <div className={styles.overview_value}>{country.area}</div>
+                <div className={styles.overview_value}>
+                  {numberWithCommas(country.area)} km{" "}
+                  <sup style={{ fontSize: "0.5rem" }}>2</sup>
+                </div>
                 <div className={styles.overview_label}>Area</div>
               </div>
             </div>
@@ -78,7 +82,7 @@ const Country = ({ country }) => {
             <div className={styles.details_panel_row}>
               <div className={styles.details_panel_label}>Capital</div>
               <div className={styles.details_panel_value}>
-                {country.capital}
+                {country.capital ? country.capital : "Doesn't have a capital"}
               </div>
             </div>
 
@@ -87,7 +91,9 @@ const Country = ({ country }) => {
               <div className={styles.details_panel_label}>Languages</div>
               <div className={styles.details_panel_value}>
                 {/* destructuring the map element so only get name allowes us to keep array of obj in 1 line */}
-                {country.languages.map(({ name }) => name).join(", ")}
+                {country.languages
+                  ? country.languages?.map(({ name }) => name).join(", ")
+                  : "No Data about Languages"}
               </div>
             </div>
 
@@ -111,8 +117,10 @@ const Country = ({ country }) => {
               <div className={styles.details_panel_label}>Currencies</div>
               <div className={styles.details_panel_value}>
                 {country.currencies
-                  .map(({ name, symbol }) => `${name} ${symbol}`)
-                  .join(", ")}
+                  ? country.currencies
+                      ?.map(({ name, symbol }) => `${name} ${symbol}`)
+                      .join(", ")
+                  : "Doesn't have a currency"}
               </div>
             </div>
 
