@@ -20,11 +20,15 @@ const Country = ({ country }) => {
 
   // FIXME need to figure out how to use Promises.allSettled for situation where there is no border for that country
   const getBorders = async () => {
-    const borders = await Promise.all(
-      country.borders?.map((border) => getCountry(border))
-    ).catch((error) => console.error(error));
+    if (country.borders != undefined) {
+      const borders = await Promise.all(
+        country.borders?.map((border) => getCountry(border))
+      ).catch((error) => console.error(error));
 
-    setBorders(borders);
+      setBorders(borders);
+    } else {
+      setBorders((country.borders = null));
+    }
   };
 
   // use useEffect so we get boarders as soon as page loads
@@ -33,6 +37,10 @@ const Country = ({ country }) => {
   }, []);
 
   console.log("BORDERS :::", borders);
+
+  function numberWithCommas(x) {
+    return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   return (
     <Layout title={country.name}>
@@ -48,7 +56,8 @@ const Country = ({ country }) => {
             <div className={styles.overview_numbers}>
               <div className={styles.overview_population}>
                 <div className={styles.overview_value}>
-                  {country.population}
+                  {/* adds commas to population */}
+                  {numberWithCommas(country.population)}
                 </div>
                 <div className={styles.overview_label}>Population</div>
               </div>
@@ -123,7 +132,7 @@ const Country = ({ country }) => {
                     Gini - measure of wealth inequality
                   </div>
                   <div className={styles.details_panel_value}>
-                    {country.gini}
+                    {`${country.gini} %`}
                   </div>
                 </div>
               </>
@@ -136,7 +145,7 @@ const Country = ({ country }) => {
               </div>
               <div className={styles.details_panel_borders_container}>
                 {/* ternary operator to handle if no borders */}
-                {borders ? (
+                {borders != null ? (
                   <>
                     {borders?.map((place) => (
                       <Link
