@@ -44,7 +44,7 @@
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
-- Responsive layout
+- Responsive layout and cross platform.
 
 <br>
 
@@ -60,10 +60,6 @@
 
 <br>
 
----
-
-<br>
-
 ## Links
 
 - Live Site URL: [Web Rank Dashboard](https://world-ranking-dashboard.netlify.app/)
@@ -72,15 +68,33 @@
 
 <br>
 
----
-
-<br>
-
 ## What I learned
 
 - Next.js dynamic routing
 - Next.js data fetching
-- Handling search input: Non case sensitive + Part of a string that matches.
+- Handling search input filtering by Country Name/ Region & Sub-region.
 - Practicing responsive design.
 - Adding Dark / Light Switcher
 - conditional rendering with Next.js
+
+<br>
+
+## Future Features
+
+- Adding MAP view to the Dynamic Country Page using React-leaflet
+- Adding sticky nav header
+  <!--
+
+  figure out how they did the click through on here:https://countries-app-peter.netlify.app/
+  and how they dealth with no borders
+
+  figure out how they did the map for each place
+  https://countries-crowd.vercel.app/
+
+   -->
+  <br>
+
+## Author
+
+- website - [Mo Khaife](https://mo-khaife-site.netlify.app/)
+- Twitter - [@khaife_codes](https://twitter.com/Khaife_Codes)
