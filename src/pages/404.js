@@ -6,11 +6,7 @@ const NotFound = () => {
   return (
     <div className="not-found">
       <div className="left-not-found">
-        <Image
-          style={{ margin: "0 auto", border: "1px solid black" }}
-          src={scarecrowPic}
-          alt="Scarecrow"
-        />
+        <Image src={scarecrowPic} alt="Scarecrow" />
       </div>
       <div className="right-not-found">
         <h1 className="title-not-found">Oooops... </h1>

@@ -6,7 +6,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/challenges/wBunSb7FPrIepJZAg0sY">
+    <a href="https://devchallenges.io/learn/tutorial/world-rank-full-application-with-react-next-js">
       Challenge
     </a>
   </h3>
@@ -72,8 +72,9 @@
 
 - Next.js dynamic routing
 - Next.js data fetching
+- Data sorting & filtering
 - Handling search input filtering by Country Name/ Region & Sub-region.
-- Practicing responsive design.
+- Practicing responsive layout design without any CSS Framework.
 - Adding Dark / Light Switcher
 - conditional rendering with Next.js
 
@@ -83,16 +84,19 @@
 
 - Adding MAP view to the Dynamic Country Page using React-leaflet
 - Adding sticky nav header
-  <!--
+- Dropdown with list of different Regional Bloc orgs and filter by this e.g. (EU, PA: Pacific Alliance, Arab League etc)
+  Search by regional bloc:
 
-  figure out how they did the click through on here:https://countries-app-peter.netlify.app/
-  and how they dealth with no borders
-
-  figure out how they did the map for each place
-  https://countries-crowd.vercel.app/
-
-   -->
-  <br>
+    <!--
+  
+    figure out how they did the click through on here:https://countries-app-peter.netlify.app/
+    and how they dealth with no borders
+  
+    figure out how they did the map for each place
+    https://countries-crowd.vercel.app/
+  
+     -->
+    <br>
 
 ## Author
 
