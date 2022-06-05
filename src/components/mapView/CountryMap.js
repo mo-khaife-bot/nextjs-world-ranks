@@ -1,5 +1,7 @@
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet-defaulticon-compatibility";
 
 import React, { useEffect, useState } from "react";
 // import { FaMapMarkerAlt } from "react-icons/fa";
@@ -12,10 +14,18 @@ const CountryMap = ({ latLong, countryName }) => {
   useEffect(() => {}, [zoom]);
 
   return (
-    <MapContainer center={latLong} zoom={zoom} scrollWheelZoom={false}>
+    <MapContainer
+      center={latLong}
+      zoom={zoom}
+      scrollWheelZoom={false}
+      style={{
+        height: "100%",
+        width: "100%",
+        marginTop: "10px",
+      }}
+    >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_ACCESS_TOKEN}`}
       />
       <Marker position={latLong} icon={icon}>
         <Popup>{countryName}</Popup>

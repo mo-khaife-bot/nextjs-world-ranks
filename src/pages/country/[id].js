@@ -6,6 +6,7 @@ import styles from "./country.module.css";
 import { useState, useEffect } from "react";
 
 // import dynamic CountryMap component to tell the map component to only render after the Next.js SSR has happened
+// needed to make the Leaflet map render correctly
 const CountryMap = dynamic(
   () => import("../../components/mapView/CountryMap"),
   { ssr: false }
@@ -185,11 +186,10 @@ const Country = ({ country }) => {
                 )}
               </div>
             </div>
-
-            {/* leaflet map */}
-
-            <CountryMap latLong={country.latlng} countryName={country.name} />
           </div>
+          {/* leaflet map */}
+
+          <CountryMap latLong={country.latlng} countryName={country.name} />
         </div>
       </div>
     </Layout>
