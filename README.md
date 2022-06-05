@@ -42,6 +42,7 @@
 - Search for a country using an input field
 - Filter countries by region with the help of react-select
 - Click on a country to see more detailed information on a separate page
+- See specific countries page with more information about that country and see location of the country on the map.
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
 - Responsive layout and cross platform.
@@ -56,6 +57,7 @@
 - Flexbox
 - Node.js
 - Material UI
+- React Leaflet / Mapbox
 - Netlify (hosting)
 
 <br>
@@ -65,6 +67,8 @@
 - Live Site URL: [Web Rank Dashboard](https://world-ranking-dashboard.netlify.app/)
 - Link to challenge: [FrontendMentor rest countries challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 - [REST Countries API](https://restcountries.com/)
+- [React-leaflet](https://react-leaflet.js.org/)
+- [Mapbox](https://www.mapbox.com/)
 
 <br>
 
@@ -76,24 +80,23 @@
 - Handling search input filtering by Country Name/ Region & Sub-region.
 - Practicing responsive layout design without any CSS Framework.
 - Adding Dark / Light Switcher
-- conditional rendering with Next.js
+- Conditional rendering with Next.js
+- Adding React-leaflet map capability
 
 <br>
 
 ## Future Features
 
-- Adding MAP view to the Dynamic Country Page using React-leaflet
 - Adding sticky nav header
 - Dropdown with list of different Regional Bloc orgs and filter by this e.g. (EU, PA: Pacific Alliance, Arab League etc)
   Search by regional bloc:
+- Adding Marker for each city capital for each country.
 
     <!--
   
-    figure out how they did the click through on here:https://countries-app-peter.netlify.app/
-    and how they dealth with no borders
+    http://techslides.com/list-of-countries-and-capitals
   
-    figure out how they did the map for each place
-    https://countries-crowd.vercel.app/
+    web-scrape capital cities and long latitude and add it as a constant.js file and map capital city to relevant longitude and latitude.
   
      -->
     <br>
