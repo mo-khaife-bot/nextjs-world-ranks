@@ -112,4 +112,11 @@ a {
     font-size: 18px;
     width: 340px;
   }
+
+  /* React-Leaflet */
+  /* .leaflet-container {
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid blue;
+  } */
 }

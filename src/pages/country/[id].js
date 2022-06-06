@@ -1,18 +1,29 @@
 import Layout from "../../components/Layout/Layout";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import styles from "./country.module.css";
 import { useState, useEffect } from "react";
+
+// import dynamic CountryMap component to tell the map component to only render after the Next.js SSR has happened
+// needed to make the Leaflet map render correctly
+const CountryMap = dynamic(
+  () => import("../../components/mapView/CountryMap"),
+  { ssr: false }
+);
 
 // async func to take in country info from id to show flags for neighboring countries/borders
 const getCountry = async (id) => {
   const res = await fetch(`https://restcountries.com/v2/alpha/${id}`);
 
   const country = res.json();
+
   return country;
 };
 
 const Country = ({ country }) => {
+  console.log(country);
+  console.log(country.latlng);
   const [borders, setBorders] = useState([]);
 
   const getBorders = async () => {
@@ -140,7 +151,7 @@ const Country = ({ country }) => {
                   </div>
                   <div className={styles.details_panel_value}>
                     {country.gini
-                      ? `{country.gini} %`
+                      ? `${country.gini} %`
                       : "No information about Gini Measure"}
                   </div>
                 </div>
@@ -150,7 +161,7 @@ const Country = ({ country }) => {
             {/* using async func to pull flags for borders */}
             <div className={styles.details_panel_borders}>
               <div className={styles.details_panel_borders_label}>
-                Neighbouring Countries
+                Neighboring Countries
               </div>
               <div className={styles.details_panel_borders_container}>
                 {/* ternary operator to handle if no borders */}
@@ -176,6 +187,9 @@ const Country = ({ country }) => {
               </div>
             </div>
           </div>
+
+          {/* leaflet map */}
+          <CountryMap latLong={country.latlng} countryName={country.name} />
         </div>
       </div>
     </Layout>
