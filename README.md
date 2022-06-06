@@ -98,6 +98,10 @@
   
     web-scrape capital cities and long latitude and add it as a constant.js file and map capital city to relevant longitude and latitude.
   
+    style the map better so it's not the edge no more
+    cam u add div and section to surround it
+    use this to inform u https://github.com/nova-gh/countries
+  
      -->
     <br>
 

@@ -22,6 +22,7 @@ const CountryMap = ({ latLong, countryName }) => {
         height: "100%",
         width: "100%",
         marginTop: "10px",
+        borderRadius: "8px",
       }}
     >
       <TileLayer

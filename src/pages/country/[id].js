@@ -187,8 +187,8 @@ const Country = ({ country }) => {
               </div>
             </div>
           </div>
-          {/* leaflet map */}
 
+          {/* leaflet map */}
           <CountryMap latLong={country.latlng} countryName={country.name} />
         </div>
       </div>
